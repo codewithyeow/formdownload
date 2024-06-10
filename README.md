@@ -15,5 +15,4 @@ This project is a simple HTML form that allows users to upload images, reorder t
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/yourrepository.git
-   cd yourrepository
+   git clone https://github.com/codewithyeow/formdownload.git
