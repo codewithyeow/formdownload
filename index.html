@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <style> 
+    .fixed-height-container {
+      min-height: 300px;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
+    <form id="myForm">
+      <div class="mb-4">
+        <label for="setNumber" class="block text-gray-700 font-bold mb-2">Set Number</label>
+        <input type="text" id="setNumber" name="setNumber" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter set number">
+      </div>
+      <div class="mb-4">
+        <label for="productName" class="block text-gray-700 font-bold mb-2">Product Name</label>
+        <input type="text" id="productName" name="productName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter product name">
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow-inner w-full fixed-height-container">
+        <div class="flex justify-center flex-wrap items-center bg-grey-lighter">
+          <div id="movable-items" class="grid grid-cols-3 lg:grid-cols-4 gap-4">
+            <label class="flex flex-col items-center px-2 py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:shadow-xl">
+              <img id="image-0" class="image w-30 h-24" src="https://m.media-amazon.com/images/I/61AeWD-m+5L._SX522_.jpg" alt="Your Image">
+              <input id="file-0" type="file" class="hidden" onchange="previewImage(event, 0)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mt-3 edit-icon">
+                <title>Edit Icon</title>
+                <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
+                <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
+              </svg>
+            </label>
+            <label class="flex flex-col items-center px-2 py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:shadow-xl">
+              <img id="image-1" class="image w-30 h-24" src="https://m.media-amazon.com/images/I/61AeWD-m+5L._SX522_.jpg" alt="Your Image">
+              <input id="file-1" type="file" class="hidden" onchange="previewImage(event, 1)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mt-3 edit-icon">
+                <title>Edit Icon</title>
+                <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
+                <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
+              </svg>
+            </label>
+            <label class="flex flex-col items-center px-2 py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:shadow-xl">
+              <img id="image-2" class="image w-30 h-24" src="https://m.media-amazon.com/images/I/61AeWD-m+5L._SX522_.jpg" alt="Your Image">
+              <input id="file-2" type="file" class="hidden" onchange="previewImage(event, 2)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mt-3 edit-icon">
+                <title>Edit Icon</title>
+                <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
+                <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
+              </svg>
+            </label>
+            <label class="flex flex-col items-center px-2 py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:shadow-xl">
+              <img id="image-3" class="image w-30 h-24" src="https://m.media-amazon.com/images/I/61AeWD-m+5L._SX522_.jpg" alt="Your Image">
+              <input id="file-3" type="file" class="hidden" onchange="previewImage(event, 3)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mt-3 edit-icon">
+                <title>Edit Icon</title>
+                <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
+                <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
+              </svg>
+            </label>
+            <label class="flex flex-col items-center px-2 py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:shadow-xl">
+              <img id="image-4" class="image w-30 h-24" src="https://m.media-amazon.com/images/I/61AeWD-m+5L._SX522_.jpg" alt="Your Image">
+              <input id="file-4" type="file" class="hidden" onchange="previewImage(event, 4)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mt-3 edit-icon">
+                <title>Edit Icon</title>
+                <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
+                <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
+              </svg>
+            </label>
+            <label class="flex flex-col items-center px-2 py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:shadow-xl">
+              <img id="image-5" class="image w-30 h-24" src="https://m.media-amazon.com/images/I/61AeWD-m+5L._SX522_.jpg" alt="Your Image">
+              <input id="file-5" type="file" class="hidden" onchange="previewImage(event, 5)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mt-3 edit-icon">
+                <title>Edit Icon</title>
+                <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
+                <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
+              </svg>
+            </label>
+          </div>
+        </div>
+        <div class="flex justify-center mt-10">
+          <button id="downloadBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="button">
+            Download PDF 
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script>
+    // Drag and drop images
+    const dragAndDropItems = document.getElementById("movable-items");
+    new Sortable(dragAndDropItems, {
+      animation: 350,
+      chosenClass: "shadow-2xl",
+      onEnd: saveOrderToLocalStorage
+    });
+
+    // Preview image and save to local storage
+    function previewImage(event, index) {
+      const reader = new FileReader();
+      // Read the image file as a data URL
+      reader.onload = function() {
+        const image = document.getElementById('image-' + index);
+        image.src = '';
+        image.src = reader.result;
+        saveImageToLocalStorage(index, reader.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    // Save image to local storage
+    function saveImageToLocalStorage(index, dataUrl) {
+      let images = JSON.parse(localStorage.getItem('images')) || {};
+      images[index] = dataUrl;
+      localStorage.setItem('images', JSON.stringify(images));
+    }
+
+    // Load images from local storage
+    function loadImagesFromLocalStorage() {
+      const images = JSON.parse(localStorage.getItem('images'));
+      if (images) {
+        for (let index in images) {
+          const image = document.getElementById('image-' + index);
+          if (image) {
+            image.src = images[index];
+          }
+        }
+      }
+    }
+
+    // Save order to local storage
+    function saveOrderToLocalStorage() {
+      const items = document.getElementById('movable-items').children;
+      let order = [];
+      for (let i = 0; i < items.length; i++) {
+        order.push(items[i].querySelector('img').id.split('-')[1]);
+      }
+      localStorage.setItem('order', JSON.stringify(order));
+    }
+
+    // Load order from local storage
+    function loadOrderFromLocalStorage() {
+      const order = JSON.parse(localStorage.getItem('order'));
+      if (order) {
+        const container = document.getElementById('movable-items');
+        let items = Array.from(container.children);
+        items.sort((a, b) => {
+          let aIndex = order.indexOf(a.querySelector('img').id.split('-')[1]);
+          let bIndex = order.indexOf(b.querySelector('img').id.split('-')[1]);
+          return aIndex - bIndex;
+        });
+        items.forEach(item => container.appendChild(item));
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadImagesFromLocalStorage();
+      loadOrderFromLocalStorage();
+    });
+
+
+    // Download PDF
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      const form = document.getElementById('myForm');
+      const setNumber = form.setNumber.value;
+      const productName = form.productName.value;
+      const items = document.getElementById('movable-items').children;
+      
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      
+      doc.setFontSize(20);
+      doc.text('Set Number: ' + setNumber, 10, 20);
+      doc.text('Product Name: ' + productName, 10, 40);
+    
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        const img = item.querySelector('img');
+        const src = img.src;
+        const x = (i % 4) * 60;
+        const y = Math.floor(i / 4) * 60 + 60;
+        doc.addImage(src, 'JPEG', x, y, 60, 60);
+      }
+      doc.save('form.pdf');
+    });
+
+  </script>
+</body>
+</html>
